@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="title" content="Lita & Falah">
+    <meta name="description" content="Landing page wedding personal Lita & Falah">
+    <meta name="keywords" content="lita & falah, wedding, wedding invitation, villa lagenta">
+    <meta name="author" content="Salman">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
+    <meta name="format-detection" content="telephone=no">
+    <title>Lita & Falah</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/app.css">
+    <link rel="stylesheet" href="public/css/uikit.css">
+    <link rel="stylesheet" href="public/css/invitation-style.css">
+    <link rel="stylesheet" href="public/css/flickity.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="public/images/logo.ico"/>
+
+</head>
+<body uk-scrollspy="target: .yn-anim; cls: uk-animation-fade; delay: 350">
+    <div id="__app">
+
+        <AudioBox></AudioBox>
+
+        <Cover></Cover>
+
+        <Mempelai></Mempelai>
+
+        <Acara></Acara>
+
+        <Gallery></Gallery>
+
+        <Protocol></Protocol>
+
+        <section id="bukutamu" class="uk-container uk-container-small" style="display: none;">
+            <div class="tw-h-24"></div>
+
+             <section>
+                 <h2 class="tw-text-3xl sm:tw-text-4xl tw-text-center" style="font-family: Scarlet"> </h2>
+
+                 <button class="uk-button uk-button-success uk-align-center" type="button" uk-toggle="target: #buku; animation:  uk-animation-slide-left;" style="margin-bottom:0px;" aria-expanded="false"><span uk-icon="icon: file-edit;" class="uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000" d="M18.65,1.68 C18.41,1.45 18.109,1.33 17.81,1.33 C17.499,1.33 17.209,1.45 16.98,1.68 L8.92,9.76 L8,12.33 L10.55,11.41 L18.651,3.34 C19.12,2.87 19.12,2.15 18.65,1.68 L18.65,1.68 L18.65,1.68 Z"></path><polyline fill="none" stroke="#000" points="16.5 8.482 16.5 18.5 3.5 18.5 3.5 1.5 14.211 1.5"></polyline></svg></span>
+                 Isi Buku Tamu</button>
+
+                 <a class="uk-button uk-button-success uk-align-center" href="#modal-center" uk-toggle="" style="width: 171px;
+                     margin-top: 8px;" aria-expanded="false">Gifts</a>
+
+                <!-- gifts -->
+                <div id="modal-center" class="uk-flex-top uk-modal" uk-modal="">
+                     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" style="color:#333">
+
+                         <button class="uk-modal-close-default uk-icon uk-close" type="button" uk-close="">
+
+                         </button>
+                         <p class="uk-text-center tw-mb-5">Scan untuk memberikan kebahagian kepada Pengantin.</p>
+                         <ul uk-accordion="" class="uk-accordion">
+                             <li class="uk-open">
+                                 <a class="uk-accordion-title" href="#">BCA</a>
+                                 <div class="uk-accordion-content">
+                                     <img src="public/images/gifts/bca-1.jpg" class="tw-mx-auto tw-h-auto" width="400" alt="BCA FALAH QR CODE">
+                                 </div>
+                             </li>
+                             <li class="uk-open">
+                                 <a class="uk-accordion-title" href="#">BCA</a>
+                                 <div class="uk-accordion-content">
+                                      <img src="public/images/gifts/bca-2.jpg" class="tw-mx-auto tw-h-auto" width="400" alt="BCA LITA QR CODE">
+                                 </div>
+                             </li>
+                         </ul>
+                     </div>
+                </div>
+
+
+                <FormGuestBook v-on:completed="addComment"></FormGuestBook>
+
+             </section>
+
+             <div class="tw-h-16"></div>
+
+            <div class="guest-comment">
+                <Comment 
+                data-aos="slide-up" data-aos-offset="100" data-aos-easing="ease-out-back"
+                    v-for="(comment, index) in comments"
+                    :comment="comment"
+                    :key="index"></Comment>
+                <infinite-loading spinner="spiral" @distance="1" @disabled="busy" @infinite="loadMore">
+                    <!-- <div class="default" slot="spinner">default</div> -->
+                    <div slot="no-more"></div>
+                    <div slot="no-results"></div>
+                </infinite-loading>
+            </div>
+        </section>
+
+        <Navbar></Navbar>
+
+        <MusicBox></MusicBox>
+
+        <div id="envelope-invitation" bg-close="false" class="uk-modal uk-flex" tabindex="0">
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-text-center"
+            style="background: transparent; background-image: url(public/images/evp.png); padding:20px 15px 60px 15px; background-position: center;
+            background-repeat: unset;
+            background-size: cover; border-radius:16px;  height: 400px;
+            width: 342px;">
+
+                <div class="tw-mt-24 tw-text-center">
+                    <p class="uk-text-medium uk-margin-remove-bottom txt-simple">HALLO ✌</p>
+
+                    <div class="tw-mb-3"></div>
+                
+                    <p class="uk-text-medium txt-simple">YOU'RE INVITED TO OUR WEDDING</p>
+                    <h2 class="yn-color tw-mt-4" style="line-height:1; margin-bottom:9px !important; font-size:28px;">
+                        Lita &amp; Falah </h2>
+                </div>
+
+                <div class="tw-mt-20">
+                    <button id="open-invitation" class="uk-modal-close tw-bg-white tw-text-brown-dark tw-text-xs tw-tracking-widest tw-py-2 tw-px-4 tw-rounded-lg tw-w-3/5" type="button">OPEN INVITATION</button>
+                </div>
+
+            </div>
+        </div>
+        
+        <Footerr></Footerr>
+        
+    </div>
+
+    <!-- component x-template -->
+    <script type="text/x-template" id="addon-audio">
+        <div>
+            <audio id="audio" autoplay loop>
+                <source src="public/music/music.mp3">
+            </audio>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="addon-music-box">
+        <div class="music-box">
+            <button class="music-box-toggle-btn"></button>
+            <button class="music" id="unmute-sound" @click="unMuteAudio" v-show="!isMute">
+                <span class="uk-icon uk-icon-image"
+                    style="background-image: url(public/images/unmute.png); margin-top: -5px;"></span>
+            </button>
+            <button class="music" id="mute-sound" @click="muteAudio" v-show="isMute">
+                <span class="uk-icon uk-icon-image"
+                    style="background-image: url(public/images/mute.png); margin-top: -5px;"></span>
+            </button>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="addon-navbar">
+        <div>
+            <div class="tw-h-28"></div>
+        
+            <div id="navbar" class="uk-section uk-section-xsmall uk-section-muted uk-position-bottom uk-position-fixed bg-menu" style="z-index: 121; bottom: -78px;">
+                <div class="uk-container uk-container-small">
+                    <div class="uk-text-small yn-menu">
+                        <nav class="uk-navbar" uk-navbar>
+                            <div class="uk-navbar-center">
+                                <ul id="ynMn" class="uk-navbar-nav" uk-scrollspy-nav="closest: li; scroll: true">
+                                    <li class="icon-menu uk-active"><a href="#opening" uk-scroll><img src="public/images/menu/icon-opening.svg" alt="Icon Opening"></a></li>
+                                    <li class="icon-menu"><a href="#mempelai" uk-scroll><img src="public/images/menu/icon-couple.svg"></a></li>
+                                    <li class="icon-menu"><a href="#acara" uk-scroll><img src="public/images/menu/icon-date.svg"></a> </li>
+                                    <li class="icon-menu"><a href="#gallery" uk-scroll><img src="public/images/menu/icon-gallery.svg"></a></li>
+                                    <li class="icon-menu"><a href="#bukutamu" uk-scroll><img src="public/images/menu/icon-chat.svg"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="addon-cover">
+        <section class="tw-bg-cover cover-position"
+            style="background-image: url(public/images/cover.jpg)">
+            <div class="outer-cover tw-px-2.5 tw-pt-5 tw-pb-16">
+                <div class="tw-p-4">
+                   
+                    <p class="tw-font-normal tw-mb-3 tw-text-sm lg:tw-text-md lg:tw-font-normal tw-text-center uk-scrollspy-inview"
+                        style="letter-spacing: 3px; color:#ffffffb3;">WEDDING INVITATION</p>
+                    
+                    <div class="tw-py-4">
+                        <h2 class="tw-text-3xl lg:tw-text-4xl tw-text-center tw-font-light uk-scrollspy-inview">Lita & Falah</h2>
+                    </div>
+                    <p class="tw-text-center tw-font-light tw-text-xs lg:tw-text-lg lg:tw-font-normal uk-scrollspy-inview"
+                    style="color: #bdaa8b; letter-spacing: 2px;">11.12.2021</p>
+                    <div class="tw-h-64"></div>
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script type="text/x-template" id="component-formguest">
+        <div id="buku" hidden class="uk-card uk-card-default uk-margin-top uk-card-body uk-align-center uk-width-1-2@m">
+            <form @submit.prevent="storeComment" id="guest_form">
+                <fieldset class="uk-fieldset">
+                    <div class="uk-margin">
+                        <div class="uk-form-label">Nama Tamu :</div>
+                        <input type="text" v-model="guest.name" class="guestbook-form" required>
+                    </div>
+
+                    <div class="uk-margin">
+                        <div class="uk-form-label">Pilih Kehadiran :</div>
+                        <select v-model="guest.presence" class="guestbook-form" @change="setPresence" required>
+                            <option value="1">Berkenan hadir</option>
+                            <option value="0">Maaf tidak bisa hadir</option>
+                        </select>
+                    </div>
+
+                    <div :class="{ 'tw-hidden' : isHidden }">
+                        <div class="uk-form-label">Jumlah Tamu:</div>
+                        <select v-model="guest.person" class="guestbook-form">
+                            <option value="1">1 Orang</option>
+                            <option value="2">2 Orang</option>
+                        </select>
+                    </div>
+
+                    <div class="uk-margin" style="margin-bottom: 0px">
+                        <div class="uk-form-label">Isi Ucapan :</div>
+                        <textarea v-model="guest.comment" class="guestbook-form" rows="5"
+                            placeholder="Ucapan Selamat" required></textarea>
+                    </div>
+
+                </fieldset>
+
+                <div class="tw-h-4"></div>
+                <button class="tw-bg-brown-lighter tw-text-white tw-text-sm tw-w-full tw-p-2 tw-rounded-lg hover:tw-shadow-md"
+                    :class="{ 'tw-opacity-50 tw-cursor-not-allowed' : isPressed }"
+                    uk-toggle="target: #buku; animation:  uk-animation-slide-left, uk-animation-slide-left uk-animation-reverse;"
+                    aria-expanded="true">Kirim Ucapan</button>
+                <button class="tw-bg-gray-100 tw-text-black tw-text-sm tw-w-full tw-p-2 tw-mt-3 tw-rounded-lg" type="button"
+                    uk-toggle="target: #buku; animation:  uk-animation-slide-left, uk-animation-slide-left uk-animation-reverse;"
+                    aria-expanded="true">Batal</button>
+
+            </form>
+        </div>
+    </script>
+
+    <!-- <script type="text/x-template" id="component-buku-tamu">
+        
+    </script> -->
+
+    <script type="text/x-template" id="component-mempelai">
+        <section id="mempelai">
+            <div class="sm:tw-max-w-screen-sm md:tw-max-w-screen-md lg:tw-max-w-screen-lg tw-mx-auto tw-px-2.5 tw-py-10">
+
+                <img src="public/images/bismillah.png" class="tw-mx-auto tw-mb-3 tw-sm:mb-5"
+                    style="opacity: 0.7; filter: invert()" alt="Bismillah" width="212">
+
+                <p class="tw-text-sm lg:tw-font-semibold tw-font-normal tw-text-center w-py-2">Assalamualaikum warahmatullahi wabarakatuh</p>
+                <p class="tw-text-sm tw-leading-relaxed lg:tw-font-semibold tw-font-normal tw-text-justify md:tw-text-center lg:tw-hidden tw-py-4 tw-mb-10">
+                    Dengan memohon rahmat dan ridho-Mu Ya
+                    Allah, Kami bermaksud mengadakan acara pernikahan putra dan putri kami.
+                </p>
+                <p class="tw-hidden lg:tw-block tw-leading-relaxed tw-text-sm lg:tw-font-semibold tw-font-normal tw-text-justify md:tw-text-center tw-py-4 tw-mb-16">
+                    Dengan memohon rahmat dan ridho-Mu Ya
+                    Allah, <br> Kami bermaksud mengadakan acara pernikahan putra dan putri kami.
+                </p>
+
+                <div class="lg:tw-w-4/5 lg:tw-mx-auto">
+                    <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 sm:tw-gap-4 md:tw-gap-2 lg:tw-gap-6 tw-mx-auto">
+                        <div class="tw-text-center">
+                            <div class="pl tw-mx-auto"></div>
+                            <h2 class="tw-py-4 m-name tw-text-3xl">
+                                Falah Fadlillah, S.Ds.</h2>
+                            <!-- <a href="" class="">@salmanagustian</a>  -->
+                            <p class="tw-text-sm lg:tw-font-semibold tw-font-normal tw-mb-10">
+                                Putra dari Bpk Candra Utama, S.H. <br>& Ibu Dra. Letfi Latifah
+                            </p>
+                        </div>
+                        <div class="tw-text-center">
+                            <div class="pw tw-mx-auto"></div>
+                            <h2 class="tw-py-4 m-name tw-text-3xl tw-mb-3">
+                                Lita Luthfiyyani, S.H.
+                            </h2>
+                            <!-- <a href="" class="">@zakhansa</a> -->
+                            <p class="tw-text-sm lg:tw-font-semibold tw-font-normal tw-mb-12 sm:tw-mb-20">
+                                Putri dari Bpk Adjat Sudradjat, S.Hut. <br>& Ibu Iin Irnayati
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+            </div>
+        </section>
+    </script>
+
+    <script type="text/x-template" id="component-acara">
+        <section id="acara">
+            <div class="uk-container uk-container-small">
+                <h2 class="tw-text-3xl tw-mt-3 sm:tw-text-4xl md:tw-text-4xl yn-color tw-text-center uk-scrollspy-inview">
+                    Save The Date </h2>
+                <p class="tw-text-center tw-mt-2 tw-mb-8 tw-text-md">Sabtu, 11 Desember 2021</p>
+
+                <div class="uk-grid-small uk-flex-center uk-child-width-auto yn-color2 yn-anim uk-grid uk-countdown uk-scrollspy-inview"
+                    uk-grid uk-countdown="date: 2021-12-11T11:00:00+08:00">
+                    <div>
+                        <div class="sm:tw-text-4xl tw-font-semibold uk-countdown-number uk-countdown-days">
+                        </div>
+                        <div
+                            class="sm:tw-text-3xl tw-font-semibold uk-countdown-label uk-margin-small uk-text-center">
+                            Hari</div>
+                    </div>
+                    <div class="uk-countdown-separator"></div>
+                    <div>
+                        <div class="sm:tw-text-4xl tw-font-semibold uk-countdown-number uk-countdown-hours">
+                        </div>
+                        <div
+                            class="sm:tw-text-3xl tw-font-semibold uk-countdown-label uk-margin-small uk-text-center">
+                            Jam</div>
+                    </div>
+                    <div class="uk-countdown-separator"></div>
+                    <div>
+                        <div
+                            class="sm:tw-text-4xl tw-font-semibold sm:tw-text-center uk-countdown-number uk-countdown-minutes">
+                        </div>
+                        <div
+                            class="sm:tw-text-3xl tw-font-semibold uk-countdown-label uk-margin-small uk-text-center">
+                            Menit</div>
+                    </div>
+                    <div class="uk-countdown-separator"></div>
+                    <div>
+                        <div
+                            class="sm:tw-text-4xl tw-font-semibold sm:tw-text-center uk-countdown-number uk-countdown-seconds">
+                        </div>
+                        <div
+                            class="sm:tw-text-3xl tw-font-semibold uk-countdown-label uk-margin-small uk-text-center">
+                            Detik</div>
+                    </div>
+                </div>
+
+                <div class="uk-width-1-1 uk-text-center" style="color:#fff">
+                    <div class="uk-grid-small uk-child-width-expand uk-grid uk-grid-stack" uk-grid="">
+                        <div class="uk-first-column">
+
+                            <div class="tw-py-12 tw-mb-3">
+                                <img class="tw-mx-auto" src="public/images/pemisah.png" alt="divider">
+                            </div>
+
+                            <div class="tw-grid tw-grid-cols-1 tw-gap-10">
+                                <div>
+                                    <p class="tw-text-brown-lighter tw-font-normal tw-text-2xl lg:tw-text-3xl"
+                                        style="font-family: Greenlight Script;">Akad</p>
+                                    <p class="tw-text-center tw-mt-2 md:tw-mt-4 tw-text-md sm:tw-text-base md:tw-text-base"
+                                        style="font-size: 14px;">Pukul 08.00 - 10.00 WIB</p>
+                                </div>
+                                <div>
+                                    <p class="tw-text-brown-lighter tw-font-normal tw-text-2xl lg:tw-text-3xl"
+                                        style="font-family: Greenlight Script;">Resepsi</p>
+                                    <p class="tw-text-center tw-mt-2 md:tw-mt-4 tw-text-md sm:tw-text-base md:tw-text-base"
+                                        style="font-size: 14px;">Pukul 11.00 - 14.00 WIB</p>
+                                </div>
+                            </div>
+
+                            <div class="tw-py-12 tw-mt-3 tw-mb-1">
+                                <img class="tw-mx-auto" src="public/images/pemisah.png" alt="divider">
+                            </div>
+
+                            <p class="tw-text-lg tw-font-semibold tw-text-center md:tw-text-xl"> Gedung Golkar Ciamis </p>
+                            <p style="font-size:14px; text-align:center; margin: 8px 0 0px 0;">
+                                Jl. Jenderal Ahmad Yani, Kertasari, Kec. Ciamis, Kabupaten Ciamis, Jawa Barat 46213
+                            </p>
+
+                            <p style="font-size:14px; text-align:center; margin: 8px 0 0px 0;">
+                            </p>
+
+                            <a href="https://goo.gl/maps/Z9GcRUoDMhk9jVGFA"
+                                class="uk-button uk-button-default uk-button-small btn-white"
+                                style="margin-top:16px; padding: 4px 16px; border-radius: 20px;">Lihat Lokasi Via Google Map
+                                <span uk-icon="icon: arrow-right" class="uk-icon"><svg width="20" height="20"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <polyline fill="none" stroke="#000" points="10 5 15 9.5 10 14"></polyline>
+                                        <line fill="none" stroke="#000" x1="4" y1="9.5" x2="15" y2="9.5"></line>
+                                    </svg></span></a>
+
+
+                            <div class="tw-py-14">
+                                <img class="tw-mx-auto" src="public/images/pemisah.png" alt="divider">
+                            </div>
+
+                            <p class="tw-text-sm tw-leading-relaxed">
+                                Ungkapan terima kasih yang tulus dari kami apabila Bapak/Ibu/Teman-teman berkenan hadir dan
+                                memberikan doa restu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script type="text/x-template" id="component-gallery">
+        <section id="gallery" class="uk-section" style="padding-bottom: 40px;">
+            <div class="uk-container uk-container-small">
+                <h2 class="tw-text-3xl sm:tw-text-4xl tw-mb-8 uk-text-center midnight yn-color yn-anim uk-scrollspy-inview "
+                    style="">
+                    Gallery
+                </h2>
+                <div class="uk-child-width-1-2 uk-child-width-1-4@m uk-grid" uk-grid="" uk-lightbox="animation: slide">
+                    <div class="uk-grid-margin uk-first-column">
+                        <a class="uk-inline yn-anim uk-scrollspy-inview "
+                            href="public/images/gallery/1.jpg">
+                            <img class="thumb-gallery" src="public/images/gallery/1.jpg" alt="Our Prawedding Photo">
+                        </a>
+                    </div>
+                    <div class="uk-grid-margin">
+                        <a class="uk-inline yn-anim uk-scrollspy-inview "
+                            href="public/images/gallery/2.jpg">
+                            <img class="thumb-gallery" src="public/images/gallery/2.jpg" alt="Our Prawedding Photo">
+                        </a>
+                    </div>
+                    <div class="uk-grid-margin uk-first-column">
+                        <a class="uk-inline yn-anim uk-scrollspy-inview "
+                            href="public/images/gallery/3.jpg">
+                            <img class="thumb-gallery" src="public/images/gallery/3.jpg" alt="Our Prawedding Photo">
+                        </a>
+                    </div>
+                    <div class="uk-grid-margin">
+                        <a class="uk-inline yn-anim uk-scrollspy-inview "
+                            href="public/images/gallery/4.jpg">
+                            <img class="thumb-gallery" src="public/images/gallery/4.jpg" alt="Our Prawedding Photo">
+                        </a>
+                    </div>
+                    <div class="tw-mx-auto" style="width: 60%">
+                        <a class="uk-inline yn-anim uk-scrollspy-inview "
+                            href="public/images/gallery/5.jpg">
+                            <img class="thumb-gallery" src="public/images/gallery/5.jpg" alt="Our Prawedding Photo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script type="text/x-template" id="component-protocol">
+        <div>
+            <div class="tw-mt-4 tw-mb-10">
+                <img class="tw-mx-auto" src="public/images/pemisah.png" alt="divider">
+            </div>
+            
+            <section id="protokol-kesehatan">
+                <div class="sm:tw-max-w-screen-sm tw-px-3 sm:tw-px-7 tw-mx-auto protocol">
+                    <div class="tw-flex tw-py-4 tw-px-10">
+                        <div class="tw-mx-auto">
+                           <h2 class="tw-text-3xl sm:tw-text-4xl tw-text-center" style="font-family: Scarlet"> Tata Tertib Acara </h2>
+                        </div>
+                    </div>
+    
+                    <div class="carousel tw-mt-8" data-flickity>
+                        <div class="carousel-cell tw-w-full tw-h-28">
+                            <div class="card tw-px-4 tw-py-4 tw-h-full">
+                                <div class="tw-flex tw-items-center">
+                                    <div class="tw-w-1/4">
+                                        <img src="public/images/protocol/protocol-1.png" width="85" class="tw-h-auto tw-mx-auto" alt="Masker">
+                                    </div>
+                                    <div class="tw-w-3/4 sm:tw-w-full">
+                                       <p class="tw-text-center tw-text-base sm:tw-text-xl tw-font-semibold tw-break-words">Wajib menggunakan masker</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-cell tw-w-full tw-h-28">
+                            <div class="card tw-px-4 tw-py-4 tw-h-full">
+                                <div class="tw-flex tw-items-center">
+                                    <div class="tw-w-1/4">
+                                        <img src="public/images/protocol/protocol-4.png" width="85" class="tw-h-auto tw-mx-auto" alt="Mencuci Tangan">
+                                    </div>
+                                    <div class="tw-w-3/4">
+                                       <p class="tw-text-center tw-text-base sm:tw-text-xl tw-font-semibold tw-break-words">Mencuci tangan menggunakan hand sanitizer atau air dan sabun</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-cell tw-w-full tw-h-28">
+                            <div class="card tw-px-4 tw-py-4 tw-h-full">
+                                <div class="tw-flex tw-items-center">
+                                    <div class="tw-w-1/4">
+                                        <img src="public/images/protocol/protocol-3.png" width="85" class="tw-h-auto tw-mx-auto" alt="Physical Distancing">
+                                    </div>
+                                    <div class="tw-w-3/4">
+                                       <p class="tw-text-center tw-text-base sm:tw-text-xl tw-font-semibold tw-break-words">Menerapkan physical distancing</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-cell tw-w-full tw-h-28">
+                            <div class="card tw-px-4 tw-py-4 tw-h-full">
+                                <div class="tw-flex tw-items-center">
+                                    <div class="tw-w-1/4">
+                                        <img src="public/images/protocol/protocol-2.png" width="85" class="tw-h-auto tw-mx-auto" alt="Berlaku 2 orang">
+                                    </div>
+                                    <div class="tw-w-3/4">
+                                       <p class="tw-text-center tw-text-base sm:tw-text-xl tw-font-semibold tw-break-words">Undangan ini hanya berlaku untuk 2 orang</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </section>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="component-comment">
+        <div class="tw-bg-white tw-w-full tw-py-5 tw-px-4 tw-h-auto tw-mb-4 tw-rounded-lg">
+            <div class="tw-flex tw-space-x-2 sm:tw-space-x-4">
+                <div class="tw-flex-none tw-h-12 tw-w-12 sm:tw-h-14 sm:tw-w-14 md:tw-h-14 md:tw-w-14 tw-rounded-full tw-bg-brown-lighter tw-relative">
+                    <span class="tw-font-extrabold tw-text-white tw-text-center tw-text-1xl tw-p-2 tw-mt-0.5 tw-absolute tw-top-0 tw-left-0 tw-right-0">
+                        {{ comment.name | guestFirstName }}
+                    </span>
+                </div>
+                <div class="tw-w-full">
+                    <div class="tw-flex tw-justify-between">
+                        <div>
+                            <p class="tw-text-gray-600 sm:tw-text-base lg:tw-text-lg tw-font-semibold">{{ comment.name }}</p>
+                        </div>
+                        <div class="tw-flex-shrink-0">
+                            <p class="tw-text-gray-600 tw-text-xs tw-mt-0.5 sm:tw-text-sm tw-font-light">{{ comment.created_at }}</p>
+                        </div>
+                    </div>
+                    <div class="tw-mt-3">
+                        <span class="tw-text-xs sm:tw-text-sm tw-px-2 tw-font-semibold tw-rounded-md tw-py-0.5" :class="badgeClass(comment.presence)">
+                           {{ comment.presence | presenceFormat }}
+                        </span>
+                    </div>
+                    <div class="tw-mt-0.5">
+                        <p class="sm:tw-text-base lg:tw-text-lg white-space comment">{{ comment.comment }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    
+    <script type="text/x-template" id="addon-footer">
+        <div>
+            <div class="tw-w-36 tw-mx-auto">
+                  <p class="tw-text-white tw-font-medium tw-text-center tw-text-xs sm:tw-text-sm">Dibuat oleh</p>
+                  <p class="tw-text-white tw-font-medium tw-text-center tw-text-base sm:tw-text-lg tw-mt-2 yn-color">
+                    <a href="https://www.instagram.com/salmanagustian/" target="_blank"> @salmanagustian</a>
+                  </p>
+            </div>
+            <div class="tw-h-20"></div>
+        </div>
+    </script>
+
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-infinite-loading@^2/dist/vue-infinite-loading.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="public/js/uikit.js"></script>
+    <script src="public/js/app.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+
+    <script>
+
+    window.document.getElementById('open-invitation').addEventListener('click', function (event) {
+        window.document.getElementById('audio').play();
+        window.document.getElementById('bukutamu').style.display = 'block'
+    });
+    </script>
+</body>
+</html>
